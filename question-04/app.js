@@ -75,28 +75,25 @@ class doublyLinkedList{
     }
 
     //todo: should remove the node with the given value from the list
-    remove(val) {
-
-        const delNode = new Node();
-        delNode.val = val;
-
-        if(this.head == null || delNode == null) return ;
-
-        if(this.head.value == delNode.val){
-            this.head = delNode.next;
+    remove(val){
+        let temp = this.head;
+        let prev = null;
+        if(temp != null && temp.val == val){
+            this.head = temp.next;
+            return;
         }
 
-        if(delNode.next != null){
-            delNode.next.prev = delNode.prev
+        while(temp != null && temp.val != val){
+            prev = temp;
+            temp = temp.next;
         }
 
-        if(delNode.prev != null){
-            delNode.prev.next = delNode.next;
+        if(temp == null){
+            return;
         }
-
-        return;
-
+        prev.next = temp.next;
     }
+
 
     //todo: should return the length of the list
     size(){
@@ -139,7 +136,7 @@ node.append(1)
 node.append(2)
 // node.prepend(0)
 // node.insert(0, 2)
-// node.remove(2)
+node.remove(2)
 // console.log(node.size())
 
 // console.log(node.nodeAtIndex(1))
